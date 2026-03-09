@@ -3,26 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapBooster Landing Page</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        header { background: #35424a; color: #ffffff; padding: 20px; text-align: center; }
-        main { padding: 20px; }
-        iframe { width: 100%; height: 600px; border: none; }
-    </style>
+    <title>SnapBoosterPlus</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="calculator.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Welcome to SnapBooster</h1>
-        <p>Your go-to solution for seamless productivity.</p>
+        <h1>Welcome to SnapBoosterPlus</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <h2>About the Project</h2>
-        <p>SnapBooster is designed to enhance your productivity with innovative tools and seamless integration.
-        Our mission is to provide users with efficient solutions to manage their tasks and workflows effectively.</p>
-        <h2>Feedback Form</h2>
-        <p>Please fill out our form to share your thoughts and feedback:</p>
-        <iframe src="https://forms.office.com/r/5TSgdXVyQM"></iframe>
+        <section id="services">
+            <h2>Our Services</h2>
+            <p>We offer two options for service delivery:</p>
+            <ul>
+                <li><strong>Standard Delivery:</strong> Regular service delivery within 5-7 business days.</li>
+                <li><strong>Express Delivery:</strong> Priority service delivery within 1-3 business days.</li>
+            </ul>
+        </section>
+        <section id="pricing">
+            <h2>Pricing Plans</h2>
+            <form id="pricing-form">
+                <label for="tier">Select a Discount Tier:</label>
+                <select id="tier" name="tier">
+                    <option value="basic">Basic Tier - 10% off</option>
+                    <option value="standard">Standard Tier - 15% off</option>
+                    <option value="premium">Premium Tier - 20% off</option>
+                </select>
+                <label for="amount">Enter Amount ($):</label>
+                <input type="number" id="amount" name="amount" required>
+                <button type="button" onclick="calculateDiscount()">Calculate Discount</button>
+            </form>
+            <div id="result"></div>
+        </section>
     </main>
+    <footer>
+        <p>&copy; 2026 SnapBoosterPlus. All rights reserved.</p>
+    </footer>
 </body>
 </html>

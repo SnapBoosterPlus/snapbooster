@@ -6,24 +6,21 @@
     <title>SnapBooster Plus</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg:        #0a0a0a;
-            --surface:   #111111;
-            --glass:     rgba(255,255,255,0.04);
+            --bg:           #0a0a0a;
+            --surface:      #111111;
+            --glass:        rgba(255,255,255,0.04);
             --glass-border: rgba(255,255,255,0.08);
             --glass-hover:  rgba(255,255,255,0.07);
-            --white:     #ffffff;
-            --muted:     rgba(255,255,255,0.45);
-            --subtle:    rgba(255,255,255,0.12);
-            --accent:    #ffffff;
-            --danger:    rgba(255,255,255,0.6);
-            --radius:    14px;
-            --radius-sm: 8px;
+            --white:        #ffffff;
+            --muted:        rgba(255,255,255,0.45);
+            --subtle:       rgba(255,255,255,0.12);
+            --radius:       14px;
+            --radius-sm:    8px;
         }
 
         html { scroll-behavior: smooth; }
@@ -36,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* ── Noise texture overlay ── */
         body::before {
             content: '';
             position: fixed;
@@ -80,8 +76,6 @@
             justify-content: center;
         }
 
-        .logo-icon svg { color: #000; }
-
         nav {
             display: flex;
             align-items: center;
@@ -101,10 +95,7 @@
             gap: 6px;
         }
 
-        nav a:hover {
-            color: var(--white);
-            background: var(--glass);
-        }
+        nav a:hover { color: var(--white); background: var(--glass); }
 
         /* ── Hero ── */
         .hero {
@@ -159,7 +150,6 @@
             color: var(--muted);
             max-width: 500px;
             margin: 0 auto;
-            font-weight: 400;
         }
 
         /* ── Layout ── */
@@ -203,8 +193,6 @@
             flex-shrink: 0;
         }
 
-        .card-icon svg { color: var(--white); }
-
         .card-header h2 {
             font-size: 1.25rem;
             font-weight: 600;
@@ -212,27 +200,51 @@
         }
 
         /* ── Disclaimer ── */
-        .disclaimer-card {
-            border-color: rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.03);
+        .disclaimer-card { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); }
+        .disclaimer-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+        /* ── Alert / Info Box ── */
+        .info-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: var(--radius-sm);
+            padding: 18px 20px;
+            margin-bottom: 24px;
         }
 
-        .disclaimer-card .card-header h2 { color: var(--white); }
+        .info-banner .info-icon {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-        .disclaimer-card p {
-            color: var(--muted);
+        .info-banner-body { flex: 1; }
+
+        .info-banner-body strong {
+            display: block;
             font-size: 0.9rem;
-            line-height: 1.7;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .info-banner-body p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
         }
 
         /* ── Table ── */
         .table-wrap { overflow-x: auto; margin: 24px 0; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.875rem;
-        }
+        table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
 
         thead th {
             text-align: left;
@@ -252,7 +264,6 @@
         }
 
         tbody tr:last-child td { border-bottom: none; }
-
         tbody tr:hover td { background: var(--glass-hover); }
 
         .pill {
@@ -288,11 +299,7 @@
         }
 
         .calc-row input::placeholder { color: var(--muted); }
-
-        .calc-row input:focus {
-            border-color: rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.07);
-        }
+        .calc-row input:focus { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.07); }
 
         .btn {
             display: inline-flex;
@@ -325,7 +332,7 @@
 
         .result-box.visible { display: block; }
 
-        .result-box .result-label {
+        .result-label {
             font-size: 0.75rem;
             color: var(--muted);
             text-transform: uppercase;
@@ -334,19 +341,9 @@
             margin-bottom: 4px;
         }
 
-        .result-box .result-price {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
+        .result-price { font-size: 2rem; font-weight: 700; letter-spacing: -1px; }
 
-        .result-meta {
-            margin-top: 14px;
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
+        .result-meta { margin-top: 14px; display: flex; gap: 24px; flex-wrap: wrap; }
         .result-meta-item { font-size: 0.82rem; color: var(--muted); }
         .result-meta-item span { color: var(--white); font-weight: 500; }
 
@@ -364,32 +361,94 @@
             border-radius: var(--radius-sm);
             padding: 18px 16px;
             transition: border-color 0.2s, background 0.2s;
-            cursor: default;
         }
 
-        .example-card:hover {
-            border-color: rgba(255,255,255,0.16);
+        .example-card:hover { border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.05); }
+        .example-card .ex-score { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+        .example-card .ex-price { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
+        .example-card .ex-note { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+
+        /* ── Payment Methods ── */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .payment-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            transition: border-color 0.2s, background 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .payment-card:hover { border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.05); }
+
+        .payment-card.featured {
+            border-color: rgba(255,255,255,0.2);
             background: rgba(255,255,255,0.05);
         }
 
-        .example-card .ex-score {
-            font-size: 0.78rem;
-            color: var(--muted);
-            font-weight: 500;
-            margin-bottom: 6px;
+        .payment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .example-card .ex-price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        .payment-title-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .example-card .ex-note {
+        .payment-icon-wrap {
+            width: 44px; height: 44px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .payment-name { font-size: 1rem; font-weight: 600; letter-spacing: -0.2px; }
+        .payment-sub  { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+        .fee-badge {
             font-size: 0.72rem;
-            color: var(--muted);
-            margin-top: 4px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 99px;
+            border: 1px solid;
+            white-space: nowrap;
         }
+
+        .fee-badge.no-fee  { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.07); }
+        .fee-badge.has-fee { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.12); background: transparent; }
+
+        .payment-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 4px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .payment-detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .payment-detail-row svg { flex-shrink: 0; margin-top: 1px; color: var(--muted); }
 
         /* ── Section label ── */
         .section-label {
@@ -402,12 +461,7 @@
         }
 
         /* ── Options ── */
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 4px;
-        }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
 
         .option-card {
             background: rgba(255,255,255,0.03);
@@ -417,29 +471,11 @@
             transition: border-color 0.2s;
         }
 
-        .option-card.recommended {
-            border-color: rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.05);
-        }
+        .option-card.recommended { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.05); }
 
-        .option-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .option-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: -0.2px;
-        }
-
-        .option-sub {
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-top: 4px;
-        }
+        .option-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+        .option-title  { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.2px; }
+        .option-sub    { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
 
         .tag {
             display: inline-flex;
@@ -453,25 +489,10 @@
             white-space: nowrap;
         }
 
-        .tag.good {
-            color: rgba(255,255,255,0.9);
-            border-color: rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.08);
-        }
+        .tag.good { color: rgba(255,255,255,0.9);  border-color: rgba(255,255,255,0.3);  background: rgba(255,255,255,0.08); }
+        .tag.bad  { color: rgba(255,255,255,0.5);  border-color: rgba(255,255,255,0.12); background: transparent; }
 
-        .tag.bad {
-            color: rgba(255,255,255,0.5);
-            border-color: rgba(255,255,255,0.12);
-            background: transparent;
-        }
-
-        .option-list {
-            list-style: none;
-            margin-top: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .option-list { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
 
         .option-list li {
             display: flex;
@@ -481,11 +502,7 @@
             color: rgba(255,255,255,0.7);
         }
 
-        .option-list li svg {
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
+        .option-list li svg { flex-shrink: 0; margin-top: 2px; }
         .option-list.pros li svg { color: rgba(255,255,255,0.9); }
         .option-list.cons li svg { color: rgba(255,255,255,0.3); }
 
@@ -501,24 +518,11 @@
         }
 
         .security-note svg { flex-shrink: 0; margin-top: 2px; color: var(--muted); }
-
-        .security-note p {
-            font-size: 0.82rem;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .security-note a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid rgba(255,255,255,0.25);
-            transition: border-color 0.2s;
-        }
-
+        .security-note p   { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+        .security-note a   { color: var(--white); text-decoration: none; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.25); transition: border-color 0.2s; }
         .security-note a:hover { border-color: rgba(255,255,255,0.7); }
 
-        /* ── How it works ── */
+        /* ── Steps ── */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -533,42 +537,16 @@
             padding: 20px;
         }
 
-        .step-num {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .step-card h4 {
-            font-size: 0.88rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .step-card p {
-            font-size: 0.8rem;
-            color: var(--muted);
-            line-height: 1.5;
-        }
+        .step-num  { font-size: 0.7rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .step-card h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; }
+        .step-card p  { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
 
         /* ── Contact ── */
-        .iframe-wrap {
-            margin-top: 20px;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-        }
+        .iframe-wrap { margin-top: 20px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--glass-border); }
+        iframe { width: 100%; height: 580px; border: none; display: block; background: #fff; }
 
-        iframe {
-            width: 100%;
-            height: 580px;
-            border: none;
-            display: block;
-            background: #fff;
-        }
+        /* ── Divider ── */
+        .divider { height: 1px; background: var(--glass-border); margin: 28px 0; }
 
         /* ── Footer ── */
         footer {
@@ -583,31 +561,11 @@
             z-index: 1;
         }
 
-        footer p {
-            font-size: 0.8rem;
-            color: var(--muted);
-        }
+        footer p { font-size: 0.8rem; color: var(--muted); }
 
-        footer .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        footer .footer-links a {
-            font-size: 0.8rem;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        footer .footer-links a:hover { color: var(--white); }
-
-        /* ── Divider ── */
-        .divider {
-            height: 1px;
-            background: var(--glass-border);
-            margin: 28px 0;
-        }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--white); }
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
@@ -615,12 +573,8 @@
             nav a span { display: none; }
             .hero { padding: 80px 20px 60px; }
             .card { padding: 24px 20px; }
-            .options-grid { grid-template-columns: 1fr; }
+            .options-grid, .payment-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; text-align: center; }
-        }
-
-        @media (max-width: 480px) {
-            nav a { padding: 6px 10px; }
         }
     </style>
 </head>
@@ -630,7 +584,7 @@
     <div class="logo">
         <div class="logo-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                 stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
                 <polyline points="16 7 22 7 22 13"/>
             </svg>
@@ -639,41 +593,23 @@
     </div>
     <nav>
         <a href="#disclaimer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
-                <line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span>Disclaimer</span>
         </a>
         <a href="#pricing">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             <span>Pricing</span>
         </a>
-        <a href="#how-it-works">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            <span>How It Works</span>
+        <a href="#payment">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span>Payment</span>
         </a>
         <a href="#options">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>Options</span>
         </a>
         <a href="#contact">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <span>Order</span>
         </a>
     </nav>
@@ -681,10 +617,7 @@
 
 <div class="hero">
     <div class="hero-tag">
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         Automated Snapscore Booster
     </div>
     <h1>Boost Your<br>Snapscore</h1>
@@ -697,12 +630,7 @@
     <div class="card disclaimer-card" id="disclaimer">
         <div class="card-header">
             <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                    <line x1="12" y1="9" x2="12" y2="13"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <h2>Disclaimer</h2>
         </div>
@@ -713,11 +641,7 @@
     <div class="card" id="pricing">
         <div class="card-header">
             <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="1" x2="12" y2="23"/>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
             <h2>Pricing & Discount Tiers</h2>
         </div>
@@ -768,11 +692,7 @@
         <div class="calc-row">
             <input type="number" id="snapscore" placeholder="Enter desired snapscore, e.g. 50000" min="1">
             <button class="btn" onclick="calculatePrice()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/>
-                    <line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="11" y2="14"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="11" y2="14"/></svg>
                 Calculate
             </button>
         </div>
@@ -815,16 +735,107 @@
         </div>
     </div>
 
+    <!-- Payment Methods -->
+    <div class="card" id="payment">
+        <div class="card-header">
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <h2>Payment Methods</h2>
+        </div>
+
+        <div class="payment-grid">
+
+            <!-- Bitcoin -->
+            <div class="payment-card featured">
+                <div class="payment-header">
+                    <div class="payment-title-row">
+                        <div class="payment-icon-wrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.416 2.352m1.632-9.246c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 5.4m5.908 1.042.416-2.353M5.86 18.047l-2.354-.415M5.86 18.047l-.985 5.588M8.29 5.4 5.937 5.4m0 0-.416 2.353"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="payment-name">Bitcoin</div>
+                            <div class="payment-sub">BTC on-chain</div>
+                        </div>
+                    </div>
+                    <span class="fee-badge no-fee">No Fee</span>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Pay exact BTC value — no extra fee applied
+                    </div>
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Wallet address provided after order submission
+                    </div>
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Order starts once payment is confirmed on-chain
+                    </div>
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        Network fee (miner fee) paid by you — varies by congestion
+                    </div>
+                </div>
+            </div>
+
+            <!-- Steam Gift Card -->
+            <div class="payment-card">
+                <div class="payment-header">
+                    <div class="payment-title-row">
+                        <div class="payment-icon-wrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                                <path d="M12 12h.01"/>
+                                <path d="M17 12h.01"/>
+                                <path d="M7 12h.01"/>
+                                <line x1="2" y1="10" x2="22" y2="10"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="payment-name">Steam Gift Card</div>
+                            <div class="payment-sub">Steam Wallet Code</div>
+                        </div>
+                    </div>
+                    <span class="fee-badge has-fee">+5% Fee</span>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        5% surcharge applied to your order total
+                    </div>
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Send unused Steam Wallet Code via the order form
+                    </div>
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Any card denomination accepted (rounded up if needed)
+                    </div>
+                    <div class="payment-detail-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        Order starts after code is verified — usually within minutes
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Fee example note -->
+        <div style="margin-top:16px; padding: 14px 18px; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--muted); display: flex; gap: 10px; align-items: flex-start;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span><strong style="color:rgba(255,255,255,0.7)">Steam Card fee example:</strong> A $45.00 order paid with Steam Card costs $45.00 × 1.05 = <strong style="color:rgba(255,255,255,0.7)">$47.25</strong>. Bitcoin has no surcharge.</span>
+        </div>
+    </div>
+
     <!-- How it works -->
     <div class="card" id="how-it-works">
         <div class="card-header">
             <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <h2>How Pricing Works</h2>
         </div>
@@ -856,16 +867,12 @@
     <div class="card" id="options">
         <div class="card-header">
             <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <h2>Two Ways to Get Started</h2>
         </div>
 
         <div class="options-grid">
-
             <!-- Option 1 -->
             <div class="option-card recommended">
                 <div class="option-header">
@@ -874,49 +881,18 @@
                         <div class="option-sub">Fully automated — no manual work</div>
                     </div>
                     <span class="tag good">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         Recommended
                     </span>
                 </div>
                 <ul class="option-list pros">
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Instant setup — no waiting
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        100% automatic — nothing to open
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Fully reliable — no missed snaps
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Revoke access anytime
-                    </li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Instant setup — no waiting</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>100% automatic — nothing to open</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fully reliable — no missed snaps</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Revoke access anytime</li>
                 </ul>
                 <div class="security-note">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     <p>Snapchat lets you manage and remove connected devices at any time. <a href="https://help.snapchat.com/hc/en-us/articles/23515601788948-How-do-I-manage-the-devices-where-I-m-currently-signed-into-my-Snapchat-account" target="_blank">Manage devices →</a></p>
                 </div>
             </div>
@@ -929,47 +905,15 @@
                         <div class="option-sub">Manual — open every snap yourself</div>
                     </div>
                     <span class="tag bad">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                         Not Recommended
                     </span>
                 </div>
                 <ul class="option-list cons">
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                        </svg>
-                        Slow — open every snap manually
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                        </svg>
-                        Friend request up to 48h wait
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                        </svg>
-                        Unreliable — not all snaps count
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                        </svg>
-                        Constant manual effort required
-                    </li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Slow — open every snap manually</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Friend request up to 48h wait</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Unreliable — not all snaps count</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Constant manual effort required</li>
                 </ul>
             </div>
         </div>
@@ -979,14 +923,22 @@
     <div class="card" id="contact">
         <div class="card-header">
             <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
             <h2>Place Your Order</h2>
         </div>
-        <p style="color: var(--muted); font-size: 0.875rem;">Fill out the form below to submit your order. We'll get back to you shortly.</p>
+
+        <!-- Email Info Banner -->
+        <div class="info-banner">
+            <div class="info-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="info-banner-body">
+                <strong>Use a valid e-mail address</strong>
+                <p>Make sure the e-mail you enter in the form is one you actively check. This is the only way I can contact you regarding your order status, payment confirmation, or any questions. Orders with invalid or unreachable e-mails cannot be processed.</p>
+            </div>
+        </div>
+
         <div class="iframe-wrap">
             <iframe src="https://forms.office.com/r/5TSgdXVyQM"></iframe>
         </div>
@@ -999,6 +951,7 @@
     <div class="footer-links">
         <a href="#disclaimer">Disclaimer</a>
         <a href="#pricing">Pricing</a>
+        <a href="#payment">Payment</a>
         <a href="#contact">Order</a>
     </div>
 </footer>
@@ -1023,8 +976,10 @@
         else if (snapscore > 80000) { multiplier = 0.90; tierLabel = '10% off'; }
         else if (snapscore > 40000) { multiplier = 0.95; tierLabel = '5% off'; }
 
-        const total   = (snapscore * pricePerUnit * multiplier).toFixed(2);
-        const savings = ((snapscore * pricePerUnit) - parseFloat(total)).toFixed(2);
+        const total    = (snapscore * pricePerUnit * multiplier).toFixed(2);
+        const totalBtc = parseFloat(total);
+        const totalSteam = (totalBtc * 1.05).toFixed(2);
+        const savings  = ((snapscore * pricePerUnit) - totalBtc).toFixed(2);
 
         priceEl.textContent = `$${total}`;
         metaEl.innerHTML = `
@@ -1032,6 +987,10 @@
             <div class="result-meta-item">Rate <span>$0.0005 / unit</span></div>
             <div class="result-meta-item">Tier <span>${tierLabel} (${multiplier}×)</span></div>
             ${parseFloat(savings) > 0 ? `<div class="result-meta-item">You save <span>$${savings}</span></div>` : ''}
+            <div class="result-meta-item" style="width:100%; margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.07);">
+                Bitcoin <span>$${total}</span>
+            </div>
+            <div class="result-meta-item">Steam Card (+5%) <span>$${totalSteam}</span></div>
         `;
         resultBox.classList.add('visible');
     }

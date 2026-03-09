@@ -1,420 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SnapBooster - Boost Your Snapscore</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+        /* Reset and base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000; /* pure black background */
+            color: #eee; /* off-white text */
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
+
+        /* Glass effect container */
+        .glass {
+            background: rgba(255 255 255 / 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255 255 255 / 0.2);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(255 255 255 / 0.1);
+        }
+
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 20px;
+            padding: 2rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: #fff;
+            background: rgba(0 0 0 / 0.6);
+            box-shadow: 0 2px 8px rgba(255 255 255 / 0.1);
         }
-        header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        header p { font-size: 1.1em; opacity: 0.9; }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+        header p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
         nav {
-            background: rgba(0,0,0,0.1);
-            padding: 15px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+            background: rgba(255 255 255 / 0.05);
+            border-bottom: 1px solid rgba(255 255 255 / 0.1);
         }
         nav a {
-            color: white;
+            color: #eee;
             text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: opacity 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.25rem 0;
+            transition: color 0.3s ease;
         }
-        nav a:hover { opacity: 0.7; }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background: #eee;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        nav a:hover,
+        nav a:focus {
+            color: #fff;
+        }
+        nav a:hover::after,
+        nav a:focus::after {
+            opacity: 1;
+        }
+
         main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 2rem auto 4rem;
+            padding: 0 1rem;
         }
+
         section {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            /* glass effect */
+            background: rgba(255 255 255 / 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255 255 255 / 0.15);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(255 255 255 / 0.1);
         }
         section h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 2em;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            letter-spacing: 0.03em;
         }
+
+        /* Disclaimer box */
         .disclaimer {
-            background: #fff3cd;
-            border-left: 5px solid #ff6b6b;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 5px;
+            background: rgba(255 255 255 / 0.07);
+            border-left: 4px solid #fff;
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            color: #ccc;
+            font-weight: 400;
         }
-        .disclaimer h3 { color: #ff6b6b; margin-bottom: 10px; }
+        .disclaimer h3 {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        /* Table styling */
         .discount-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin-top: 1rem;
+            color: #eee;
         }
-        .discount-table th, .discount-table td {
-            padding: 15px;
+        .discount-table th,
+        .discount-table td {
+            padding: 1rem 1.25rem;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid rgba(255 255 255 / 0.15);
         }
         .discount-table th {
-            background: #667eea;
-            color: white;
+            background: rgba(255 255 255 / 0.12);
+            font-weight: 600;
         }
-        .discount-table tr:hover { background: #f5f5f5; }
+        .discount-table tr:hover {
+            background: rgba(255 255 255 / 0.1);
+        }
+
+        /* Calculator */
         .calculator {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px 0;
+            margin-top: 1.5rem;
         }
-        .calculator input, .calculator button {
-            padding: 12px 15px;
-            margin: 10px 5px 10px 0;
-            border: 2px solid #667eea;
-            border-radius: 5px;
-            font-size: 1em;
+        .calculator input,
+        .calculator button {
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            border: 1.5px solid rgba(255 255 255 / 0.3);
+            background: rgba(0 0 0 / 0.3);
+            color: #eee;
+            transition: background 0.3s ease, border-color 0.3s ease;
+            font-weight: 500;
+            outline-offset: 2px;
+        }
+        .calculator input::placeholder {
+            color: #bbb;
+        }
+        .calculator input:focus {
+            background: rgba(255 255 255 / 0.1);
+            border-color: #fff;
+            color: #fff;
         }
         .calculator button {
-            background: #667eea;
-            color: white;
+            background: rgba(255 255 255 / 0.15);
+            border-color: rgba(255 255 255 / 0.4);
             cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
+            font-weight: 700;
+            color: #fff;
+            user-select: none;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
-        .calculator button:hover {
-            background: #764ba2;
+        .calculator button:hover,
+        .calculator button:focus {
+            background: rgba(255 255 255 / 0.35);
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+            border-color: #fff;
+            color: #000;
         }
+
+        /* Result box */
         .result {
-            background: #e8f5e9;
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 15px;
-            border-left: 4px solid #4caf50;
+            margin-top: 1rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255 255 255 / 0.1);
+            border-left: 4px solid #fff;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #ddd;
         }
+
+        /* Options container */
         .options-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         .option-box {
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid #ddd;
+            padding: 1.5rem 1.25rem;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255 255 255 / 0.15);
+            background: rgba(255 255 255 / 0.05);
+            box-shadow: 0 2px 10px rgba(255 255 255 / 0.05);
+            color: #eee;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .option-box.recommended {
-            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
-            border-color: #4caf50;
-            border-width: 3px;
+            border-color: #fff;
+            box-shadow: 0 4px 20px rgba(255 255 255 / 0.3);
+            background: rgba(255 255 255 / 0.12);
         }
         .option-box h4 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
         }
         .badge {
             display: inline-block;
-            background: #4caf50;
-            color: white;
-            padding: 5px 10px;
+            padding: 0.25rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8em;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            user-select: none;
+        }
+        .badge.recommended {
+            background: #fff;
+            color: #000;
         }
         .badge.not-recommended {
-            background: #ff6b6b;
+            background: rgba(255 255 255 / 0.3);
+            color: #888;
         }
         .option-box ul {
             list-style: none;
-            padding: 0;
+            padding-left: 0;
         }
         .option-box li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255 255 255 / 0.1);
+            position: relative;
+            padding-left: 2rem;
+            font-weight: 500;
         }
-        .option-box li:last-child { border-bottom: none; }
-        .option-box li:before {
-            content: "✓ ";
-            color: #4caf50;
-            font-weight: bold;
-            margin-right: 8px;
+        .option-box li:last-child {
+            border-bottom: none;
         }
-        .option-box.not-recommended li:before {
-            content: "✗ ";
-            color: #ff6b6b;
+        /* Icons instead of emoji */
+        .option-box li::before {
+            content: "\2713"; /* checkmark */
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
+        .option-box.not-recommended li::before {
+            content: "\2717"; /* cross mark */
+            color: #bbb;
+        }
+
+        /* Security link */
         .security-link {
-            background: #e3f2fd;
-            padding: 15px;
-            border-left: 4px solid #2196f3;
-            margin: 15px 0;
-            border-radius: 5px;
+            margin-top: 2rem;
+            padding: 1rem 1.25rem;
+            border-left: 4px solid #fff;
+            background: rgba(255 255 255 / 0.07);
+            border-radius: 8px;
+            color: #ccc;
         }
         .security-link a {
-            color: #1976d2;
-            font-weight: bold;
+            color: #eee;
+            font-weight: 600;
             text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
         }
-        .security-link a:hover { text-decoration: underline; }
+        .security-link a:hover,
+        .security-link a:focus {
+            border-color: #fff;
+        }
+
+        /* Common orders */
         .common-orders {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         .order-card {
-            background: #f0f4ff;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+            background: rgba(255 255 255 / 0.05);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border-left: 4px solid #fff;
+            color: #eee;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(255 255 255 / 0.05);
+            transition: background 0.3s ease;
         }
-        .order-card strong { color: #667eea; }
+        .order-card strong {
+            color: #fff;
+            font-weight: 700;
+        }
+        .order-card:hover {
+            background: rgba(255 255 255 / 0.12);
+        }
+
         iframe {
             width: 100%;
             height: 600px;
             border: none;
-            border-radius: 8px;
-            margin-top: 20px;
+            border-radius: 12px;
+            margin-top: 2rem;
+            box-shadow: 0 8px 30px rgba(255 255 255 / 0.1);
+            background: #111;
         }
+
         footer {
-            background: rgba(0,0,0,0.8);
-            color: white;
+            background: rgba(0 0 0 / 0.8);
+            color: #eee;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 1.5rem 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            user-select: none;
         }
-        @media (max-width: 768px) {
-            .options-container { grid-template-columns: 1fr; }
-            header h1 { font-size: 1.8em; }
-            nav a { margin: 0 10px; font-size: 0.9em; }
-            section { padding: 20px; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            .common-orders {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>🚀 SnapBooster</h1>
-        <p>Boost Your Snapscore the Smart Way</p>
+        <h1>SnapBooster</h1>
+        <p>Boost Your Snapscore</p>
     </header>
     <nav>
-        <a href="#disclaimer">Disclaimer</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#options">Options</a>
-        <a href="#contact">Contact</a>
+        <a href="#features">Features</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#orders">Orders</a>
+        <a href="#security">Security</a>
     </nav>
-
     <main>
-        <section id="disclaimer" class="disclaimer">
-            <h3>⚠️ DISCLAIMER</h3>
-            <p><strong>Everything you do here is at your own risk. There is ALWAYS a possibility that you may get banned. I am not responsible for any lost accounts or any related consequences. Please be fully aware beforehand that this risk ALWAYS exists.</strong></p>
+        <section id="features" class="glass">
+            <h2>Features</h2>
+            <p>Discover how SnapBooster can help you increase your Snapscore quickly and safely.</p>
+            <!-- Add feature list or icons here if needed -->
         </section>
 
-        <section id="pricing">
-            <h2>💰 Pricing & Calculator</h2>
-            
-            <h3>Discount Tiers Explained</h3>
-            <table class="discount-table">
-                <thead>
-                    <tr>
-                        <th>Snapscore Range</th>
-                        <th>Price Per Unit</th>
-                        <th>Discount</th>
-                        <th>Price Multiplier</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Up to 40,000 units</td>
-                        <td>$0.0005</td>
-                        <td>No discount</td>
-                        <td><strong>1.00</strong></td>
-                    </tr>
-                    <tr>
-                        <td>40,001 to 80,000 units</td>
-                        <td>$0.0005</td>
-                        <td>5% discount</td>
-                        <td><strong>0.95</strong></td>
-                    </tr>
-                    <tr>
-                        <td>80,001 to 120,000 units</td>
-                        <td>$0.0005</td>
-                        <td>10% discount</td>
-                        <td><strong>0.90</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Above 120,000 units</td>
-                        <td>$0.0005</td>
-                        <td>30% discount</td>
-                        <td><strong>0.70</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+        <section id="calculator" class="glass calculator">
+            <h2>Snapscore Calculator</h2>
+            <input type="number" placeholder="Current Snapscore" aria-label="Current Snapscore" />
+            <input type="number" placeholder="Desired Snapscore" aria-label="Desired Snapscore" />
+            <button type="button">Calculate</button>
+            <div class="result" aria-live="polite" aria-atomic="true" hidden></div>
+        </section>
 
-            <h3>💡 Interactive Price Calculator</h3>
-            <div class="calculator">
-                <label for="snapscore"><strong>Enter Desired Snapscore:</strong></label><br>
-                <input type="number" id="snapscore" placeholder="e.g., 50000" min="1">
-                <button onclick="calculatePrice()">Calculate Price</button>
-                <div id="result" class="result" style="display:none;"></div>
-            </div>
-
-            <h3>📊 Common Orders (Examples)</h3>
+        <section id="orders" class="glass">
+            <h2>Common Orders</h2>
             <div class="common-orders">
                 <div class="order-card">
-                    <strong>10,000 Snapscore</strong><br>
-                    Price: <strong style="color: #4caf50;">$5.00</strong><br>
-                    <small>(10,000 × 0.0005 × 1.00)</small>
+                    <strong>1000 Points</strong><br />
+                    Fast delivery, reliable.
                 </div>
                 <div class="order-card">
-                    <strong>35,000 Snapscore</strong><br>
-                    Price: <strong style="color: #4caf50;">$17.50</strong><br>
-                    <small>(35,000 × 0.0005 × 1.00)</small>
+                    <strong>5000 Points</strong><br />
+                    Best value package.
                 </div>
                 <div class="order-card">
-                    <strong>60,000 Snapscore</strong><br>
-                    Price: <strong style="color: #4caf50;">$14.25</strong><br>
-                    <small>(60,000 × 0.0005 × 0.95)</small>
-                </div>
-                <div class="order-card">
-                    <strong>100,000 Snapscore</strong><br>
-                    Price: <strong style="color: #4caf50;">$45.00</strong><br>
-                    <small>(100,000 × 0.0005 × 0.90)</small>
-                </div>
-                <div class="order-card">
-                    <strong>500,000 Snapscore</strong><br>
-                    Price: <strong style="color: #4caf50;">$175.00</strong><br>
-                    <small>(500,000 × 0.0005 × 0.70)</small>
+                    <strong>10000 Points</strong><br />
+                    Premium service.
                 </div>
             </div>
         </section>
 
-        <section id="how-it-works">
-            <h2>🔧 How These Prices Are Made</h2>
-            <p>We operate sophisticated bots that require significant resources to run. Here's the reality:</p>
-            <ul>
-                <li><strong>Higher Snapscore Requirements</strong> = Longer bot runtime</li>
-                <li><strong>Longer Runtime</strong> = More server costs & computational power needed</li>
-                <li><strong>More Expensive Operations</strong> = Higher pricing</li>
-                <li><strong>Volume Discounts</strong> = We reward bulk orders to make it more affordable</li>
-            </ul>
-            <p style="margin-top: 15px; color: #666;">The discount tiers are designed to incentivize larger orders while keeping smaller orders affordable for everyone.</p>
-        </section>
-
-        <section id="options">
-            <h2>🔐 Two Options to Get Started</h2>
-            
-            <div class="options-container">
-                <div class="option-box recommended">
-                    <h4>✅ Option 1: Share Your Login (Recommended)</h4>
-                    <span class="badge">Best Choice</span>
-                    <p><strong>Quick, reliable, and fully in your control</strong></p>
-                    <p>Simply provide your Snapchat login details and let the bot handle everything automatically.</p>
-                    
-                    <h5 style="margin-top: 15px; color: #2e7d32;">Why this is the better choice:</h5>
-                    <ul>
-                        <li>Instant setup – No waiting around</li>
-                        <li>Fully automatic – You don't open any Snaps</li>
-                        <li>100% reliable – No Snaps get missed</li>
-                        <li>You stay in control – Remove access anytime</li>
-                        <li>Monitor activity – Revoke access instantly if needed</li>
-                    </ul>
-
-                    <div class="security-link">
-                        <strong>🔒 Your security is guaranteed</strong><br>
-                        Snapchat lets you manage and remove all connected devices at any time:<br>
-                        <a href="https://help.snapchat.com/hc/en-us/articles/23515601788948-How-do-I-manage-the-devices-where-I-m-currently-signed-into-my-Snapchat-account" target="_blank">
-                            → Manage your Snapchat login devices
-                        </a>
-                    </div>
-                </div>
-
-                <div class="option-box not-recommended">
-                    <h4>❌ Option 2: Add Friend Account (Not Recommended)</h4>
-                    <span class="badge not-recommended">Avoid This</span>
-                    <p><strong>Manually add a bot account as a friend</strong></p>
-                    <p>Open every Snap yourself to count as a snappoint.</p>
-                    
-                    <h5 style="margin-top: 15px; color: #c62828;">Why most people avoid this:</h5>
-                    <ul>
-                        <li>Slow & tedious – Open every single Snap manually</li>
-                        <li>Long wait – Friend request takes up to 48 hours</li>
-                        <li>Unreliable – Not all Snaps will count</li>
-                        <li>You miss Snaps – Delays mean lost progress</li>
-                        <li>More effort – Constant manual work required</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>📝 Get Started Now</h2>
-            <p>Fill out the form below to submit your order and get your Snapscore boost started:</p>
-            <iframe src="https://forms.office.com/r/5TSgdXVyQM"></iframe>
+        <section id="security" class="glass security-link">
+            <h2>Security & Privacy</h2>
+            <p>Your data is protected with top-notch security standards. 
+            <a href="#">Learn more</a></p>
         </section>
     </main>
-
     <footer>
-        <p>&copy; 2026 SnapBoosterPlus. All Rights Reserved. | Use at your own risk.</p>
+        &copy; 2026 SnapBooster. All rights reserved.
     </footer>
-
-    <script>
-        function calculatePrice() {
-            const snapscore = parseFloat(document.getElementById('snapscore').value);
-            const resultDiv = document.getElementById('result');
-            
-            if (!snapscore || snapscore < 1) {
-                resultDiv.style.display = 'none';
-                return;
-            }
-
-            const pricePerUnit = 0.0005;
-            let multiplier = 1.00;
-
-            if (snapscore > 120000) {
-                multiplier = 0.70;
-            } else if (snapscore > 80000) {
-                multiplier = 0.90;
-            } else if (snapscore > 40000) {
-                multiplier = 0.95;
-            }
-
-            const totalPrice = (snapscore * pricePerUnit * multiplier).toFixed(2);
-            const discount = ((1 - multiplier) * 100).toFixed(0);
-
-            resultDiv.innerHTML = `
-                <h4>Price Calculation</h4>
-                <p><strong>Snapscore:</strong> ${snapscore.toLocaleString()}</p>
-                <p><strong>Price Per Unit:</strong> $0.0005</p>
-                <p><strong>Discount Tier:</strong> ${discount}% off (Multiplier: ${multiplier})</p>
-                <p style="font-size: 1.3em; color: #2e7d32; margin-top: 15px;">
-                    <strong>Total Price: $${totalPrice}</strong>
-                </p>
-            `;
-            resultDiv.style.display = 'block';
-        }
-
-        // Allow Enter key to calculate
-        document.getElementById('snapscore').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') calculatePrice();
-        });
-    </script>
 </body>
 </html>
